@@ -1,0 +1,102 @@
+/**
+初始化
+ */
+body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li, pre, form, fieldset, legend, button, input, textarea, th, td ,xmp{ margin:0; padding:0; }
+body, button, input, select, textarea { font-size:12px; }
+h1, h2, h3, h4, h5, h6{ font-size:100%; }
+address, cite, dfn, em, var { font-style:normal; }
+code, kbd, pre, samp { font-family:couriernew, courier, monospace; }
+small{ font-size:12px; }
+ul, ol { list-style:none; }
+a { text-decoration:none; }
+a:hover { text-decoration:underline; }
+sup { vertical-align:text-top; }
+sub{ vertical-align:text-bottom; }
+legend { color:#000; }
+fieldset, img { border:0; }
+button, input, select, textarea { font-size:100%; }
+table { border-collapse:collapse; border-spacing:0; }
+body{
+    background-color: #2B2B2B;
+}
+.json_html_content{
+    margin:12px 0 0 12px;
+    padding-bottom: 200px;
+
+}
+.json_html_content ul{
+    margin-left: 24px;
+}
+.json_html_content ul li xmp{
+    height: 18px;
+    line-height: 18px;
+    cursor: pointer;
+}
+.single xmp{
+    display: inline;
+    font-size: 14px;
+}
+a.open,a.close{
+    cursor: pointer;
+    background-size: 70px;
+    font-size: 12px;
+    color: #c0c4cc;
+    line-height: 12px;
+    height: 12px;
+    width: 12px;
+    text-align: center;
+    border: 1px solid #c0c4cc;
+    display: inline-block;
+    margin-right: 4px;
+
+}
+
+
+
+.open:before{
+    content: "+"
+}
+.close:before{
+    content: "-"
+}
+.key{
+    color:#C1C1C1;
+}
+.value:before {content:"　:　";color:#BCBCBC;font-weight: bold}
+.pad{
+    margin-left: 12px;
+}
+.value{
+    color: orange;
+}
+.key,.value{
+    font-family: "Arial","Microsoft YaHei","黑体","宋体",sans-serif;
+}
+.number{
+    color: #b474c4;!important;
+}
+
+.input{
+    font-size: 20px;
+    outline:none;
+    color: transparent;
+    background-color: transparent ;
+    border-radius: 8px;
+    border:2px solid gray;
+    width: 200px;
+    height: 60px;
+    position: fixed;
+    transition:width 1ms;
+    -webkit-transition:width 0.3s; /* Safari and Chrome */
+    top: 20px;
+    right: 12px;
+    margin: 0 auto;
+}
+.input::-webkit-input-placeholder {
+    text-align: center;
+}
+.input:hover{
+    color: #cccccc;
+    width: 800px;
+    position: fixed;
+}
