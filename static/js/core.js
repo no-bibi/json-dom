@@ -1,4 +1,5 @@
-let loadJson = function () {};
+let loadJson = function () {
+};
 {
     let jData = null;
 
@@ -6,6 +7,7 @@ let loadJson = function () {};
         buff = "";
 
         constructor(data, path = 'data') {
+            this.initWarp();
             if (jData == null) {
                 jData = data;
             }
@@ -68,12 +70,33 @@ let loadJson = function () {};
         render() {
             document.getElementById("json-content").innerHTML = this.html();
         }
+
+        initWarp(){
+            if (document.getElementById(`json-content`) == null){
+                document.body.innerHTML = this.container();
+            }
+        }
+
+        container() {
+            return `<div class="main"><div class="json_html_content"><ul>
+                            <li data-node="data">
+                                <div class="single"><a class="close"></a>
+                                    <span class="key">json</span>
+                                </div>
+                            </li>
+                            <li>
+                                <ul class="list-all" id="json-content"></ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>`
+        }
     }
 
     class DomController {
         static run() {
             //开关
-            $('.json_html_content').on('click', '.close,.open', function (event) {
+            $('body').on('click', '.json_html_content .close,.open', function (event) {
                 let node_status = $(this).hasClass('close') ? 'close' : 'open';
                 let change_status = node_status === 'open' ? 'close' : 'open';
                 let obj = $(this).removeClass('close').addClass(change_status).closest('li').next();
@@ -81,7 +104,7 @@ let loadJson = function () {};
             });
 
             //查找节点对应数据
-            $('.json_html_content').on('click', 'span.key,span.value', function (event) {
+            $('body').on('click', '.json_html_content span.key,span.value', function (event) {
                 event.stopPropagation();
                 let node = $(this).closest('li').attr('data-node');
                 let data = jData;
