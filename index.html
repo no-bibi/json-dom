@@ -1,87 +1,47 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <title>树组件</title>
-    <link rel="stylesheet" href="layui/css/layui.css">
+    <meta charset="UTF-8">
+    <title>JSON-DOM</title>
+    <link rel="stylesheet" href="static/css/json.css">
 </head>
 <body>
-<div id="test1"></div>
-<script src="layui/layui.js"></script>
+<div class="main">
+    <div class="json_html_content">
+        <ul>
+            <li data-node="data">
+                <div class="single"><a class="close"></a>
+                    <span class="key">json</span>
+                </div>
+            </li>
+            <li>
+                <ul class="list-all" id="json-content">
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>
+<script src="static/js/jq.js"></script>
+<script src="static/js/core.js"></script>
 <script>
-    layui.use('tree', function () {
-        var tree = layui.tree;
-
-        //渲染
-        var inst1 = tree.render({
-            elem: '#test1'  //绑定元素
-            , data: [{
-                title: '江西' //一级菜单
-                , children: [{
-                    title: '南昌' //二级菜单
-                    , children: [
-                        {
-                            title: '高新区',//三级菜单
-                            //…… //以此类推，可无限层级
-                        },
-                        {
-                            title: '南昌' //二级菜单
-                            , children: [{
-                                title: '高新区',//三级菜单
-                                //…… //以此类推，可无限层级
-                            }, {
-                                title: '高新区',//三级菜单
-                                //…… //以此类推，可无限层级
-                            }, {
-                                title: '高新区',//三级菜单
-                                //…… //以此类推，可无限层级
-                            }, {
-                                title: '高新区',//三级菜单
-                                //…… //以此类推，可无限层级
-                            }, {
-                                title: '高新区',//三级菜单
-                                //…… //以此类推，可无限层级
-                            },
-
-                            ]
-                        },
-                        {
-                            title: '高新区', //三级菜单,
-                            children: [{
-                                title: '南昌' //二级菜单
-                                , children: [{
-                                    title: '高新区',//三级菜单
-                                    //…… //以此类推，可无限层级
-                                }, {
-                                    title: '高新区',//三级菜单
-                                    //…… //以此类推，可无限层级
-                                }, {
-                                    title: '高新区',//三级菜单
-                                    //…… //以此类推，可无限层级
-                                }, {
-                                    title: '高新区',//三级菜单
-                                    //…… //以此类推，可无限层级
-                                }, {
-                                    title: '高新区',//三级菜单
-                                    //…… //以此类推，可无限层级
-                                },
-
-                                ]
-                            }]
-                            //…… //以此类推，可无限层级
-                        }]
-                },                        {
-                    title: '高新区',//三级菜单
-                    //…… //以此类推，可无限层级
-                }]
-            }, {
-                title: '陕西' //一级菜单
-                , children: [{
-                    title: '西安' //二级菜单
-                }]
-            }]
+    $(function () {
+        loadJson({
+            "animals": {
+                "dog": [
+                    {
+                        "name": "Rufus",
+                        "age":15
+                    },
+                    {
+                        "name": "Marty",
+                        "age": null
+                    }
+                ]
+            }
         });
-    });
+
+    })
 </script>
+
 </body>
 </html>

@@ -1,0 +1,119 @@
+/**
+初始化
+ */
+body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, dl, dt, dd, ul, ol, li, pre, form, fieldset, legend, button, input, textarea, th, td ,span{ margin:0; padding:0; }
+body, button, input, select, textarea { font-size:12px; }
+h1, h2, h3, h4, h5, h6{ font-size:100%; }
+address, cite, dfn, em, var { font-style:normal; }
+code, kbd, pre, samp { font-family:couriernew, courier, monospace; }
+small{ font-size:12px; }
+ul, ol { list-style:none; }
+a { text-decoration:none; }
+a:hover { text-decoration:underline; }
+sup { vertical-align:text-top; }
+sub{ vertical-align:text-bottom; }
+legend { color:#000; }
+fieldset, img { border:0; }
+button, input, select, textarea { font-size:100%; }
+table { border-collapse:collapse; border-spacing:0; }
+body{
+    background-color: #2B2B2B;
+}
+.json_html_content{
+    margin:12px 0 0 12px;
+}
+.json_html_content ul{
+    margin-left: 24px;
+}
+.json_html_content ul li span{
+    height: 18px;
+    line-height: 18px;
+    cursor: pointer;
+    white-space: nowrap;  /*强制span不换行*/
+    display: inline;  /*将span当做块级元素对待*/
+}
+
+.single span{
+    display: inline;
+    font-size: 14px;
+    white-space: nowrap;  /*强制span不换行*/
+}
+a.open,a.close{
+    cursor: pointer;
+    background-size: 70px;
+    font-size: 12px;
+    line-height: 12px;
+    height: 12px;
+    width: 12px;
+    text-align: center;
+    border: 1px solid #c0c4cc;
+    display: inline-block;
+    margin-right: 4px;
+    background-color: #c0c4cc;
+}
+
+
+
+.open:before{
+    content: "+";
+}
+.close:before{
+    content: "-"
+}
+.key{
+    color:#C1C1C1;
+    margin-left: 2px;
+}
+.value:before {content:"　:　";color:#BCBCBC;font-weight: bold}
+.pad{
+    margin-left: 20px;
+}
+.value{
+    color: orange;
+}
+.key,.value{
+    font-family: "Arial","Microsoft YaHei","黑体","宋体",sans-serif;
+}
+span.value-number{
+    color: #b474c4;!important;
+}
+span.value-null{
+    color: #92B8B1;!important;
+}
+ul.list-all, li.list-one ,li.list-many,li.list-array{
+    display: block;
+    width: 100%;
+    position: relative;
+    padding-top: 3px;
+}
+
+li.list-many:before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: -17px;
+    width: 0;
+    height: 100%;
+    border-left: 1px dotted #c0c4cc;
+}
+
+
+li.list-one:before {
+    content: '';
+    position: absolute;
+    top: -7px;
+    left: -17px;
+    width: 0;
+    height: 20px;
+    border-left: 1px dotted #c0c4cc
+}
+
+li.list-one:after {
+    content: '';
+    position: absolute;
+    top: 14px;
+    left: -17px;
+    width: 15px;
+    height: 0;
+    border-top: 1px dotted #c0c4cc;
+}
