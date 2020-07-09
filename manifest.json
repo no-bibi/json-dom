@@ -1,0 +1,23 @@
+{
+  "name": "JSON Dom",
+  "version": "0.1.0",
+  "manifest_version": 2,
+  "author": "Btop theqtkc@gmail.com",
+  "description": "The fastest json parser",
+  "homepage_url": "https://github.com/no-bibi/json-dom",
+  "icons": {
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["static/js/jq.js","static/js/core.js"],
+      "run_at": "document_start"
+    }
+  ],
+  "web_accessible_resources": [
+    "static/css/json.css"
+  ],
+  "permissions": [
+    "<all_urls>"
+  ]
+}

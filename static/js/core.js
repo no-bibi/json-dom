@@ -7,15 +7,12 @@ let loadJson = function () {
         buff = "";
 
         constructor(data, path = 'data') {
-            this.initWarp();
+
             if (jData == null) {
                 jData = data;
             }
             let i = 0;
             for (let key in data) {
-                if (!data.hasOwnProperty(key)) {
-                    return
-                }
                 i++
                 let node = path + (!isNaN(key) ? `[${key}]` : '.' + key);
                 let listCss = "list-many"
@@ -49,7 +46,7 @@ let loadJson = function () {
 
         // 一对多节点
         manyNode(node, key) {
-            return `<li class="list-one" data-node="${node}"><div class="single"><a class="close"></a><span class="key">${key}</span></div></li>`
+            return `<li class="list-one" data-node="${node}"><div class="single"><a class="close"></a><xmp class="key">${key}</xmp></div></li>`
         }
 
         // 子节点
@@ -60,7 +57,7 @@ let loadJson = function () {
 
         // 单一节点
         oneNode(node, key, value, vCss) {
-            return `<li class="list-one" data-node="${node}"><div class="single"><span class="key pad">${key}</span><span class="value ${vCss}">${value}</span></div></li>`
+            return `<li class="list-one" data-node="${node}"><div class="single"><xmp class="key pad">${key}</xmp><xmp class="value ${vCss}">${value}</xmp></div></li>`
         }
 
         html() {
@@ -68,11 +65,13 @@ let loadJson = function () {
         }
 
         render() {
-            document.getElementById("json-content").innerHTML = this.html();
+            this.initWarp();
+            let wrap = document.getElementById("json-content");
+            wrap.innerHTML = this.html();
         }
 
-        initWarp(){
-            if (document.getElementById(`json-content`) == null){
+        initWarp() {
+            if (document.getElementById(`json-content`) == null) {
                 document.body.innerHTML = this.container();
             }
         }
@@ -81,11 +80,11 @@ let loadJson = function () {
             return `<div class="main"><div class="json_html_content"><ul>
                             <li data-node="data">
                                 <div class="single"><a class="close"></a>
-                                    <span class="key">json</span>
+                                    <xmp class="key">json</xmp>
                                 </div>
                             </li>
                             <li>
-                                <ul class="list-all" id="json-content"></ul>
+                                <ul class="list-all" id="json-content" style="display: block"></ul>
                             </li>
                         </ul>
                     </div>
@@ -104,7 +103,7 @@ let loadJson = function () {
             });
 
             //查找节点对应数据
-            $('body').on('click', '.json_html_content span.key,span.value', function (event) {
+            $('body').on('click', '.json_html_content xmp.key,xmp.value', function (event) {
                 event.stopPropagation();
                 let node = $(this).closest('li').attr('data-node');
                 let data = jData;
@@ -114,9 +113,68 @@ let loadJson = function () {
         }
     }
 
-    DomController.run();
-
     loadJson = (json) => {
         new DomBuilder(json).render();
+
+    }
+    document.addEventListener("DOMContentLoaded", function () {
+        try {
+            let raw = document.body.innerText;
+            if (isJSON(raw)) {
+                document.body.innerHTML = "";// 清除无用内容
+                loadCss().then(function () {
+                    let j = JSON.parse(raw);
+                    loadJson(j)
+                })
+            }
+        } catch (e) {
+            console.log(e)
+        }
+        // 监听事件
+        DomController.run();
+    }, false);
+
+    function isJSON(jsonStr) {
+        let str = jsonStr;
+        if (!str || str.length === 0) {
+            return false
+        }
+
+        str = str.replace(/\\(?:["\\\/bfnrt]|u[0-9a-fA-F]{4})/g, '@')
+        str = str.replace(/"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g, ']')
+        str = str.replace(/(?:^|:|,)(?:\s*\[)+/g, '')
+        return (/^[\],:{}\s]*$/).test(str)
+    }
+
+    function loadCss() {
+        let url = chrome.extension.getURL(`static/css/json.css`);
+        let link = document.createElement("link");
+        link.rel = "stylesheet";
+        link.href = url;
+        link.type = "text/css";
+        document.head.appendChild(link);
+        var checkElement = document.createElement("a");
+        checkElement.setAttribute("class", "open");
+        document.body.appendChild(checkElement);
+        var scheduleId = null;
+        return new Promise(function(resolve, reject) {
+            function checker() {
+                var content = window.
+                getComputedStyle(checkElement, ":before").
+                getPropertyValue("content");
+                if (/\+/.test(content)) {
+                    clearTimeout(scheduleId);
+                    document.body.removeChild(checkElement);
+                    resolve();
+
+                } else {
+                    scheduleId = setTimeout(checker, 1);
+                }
+            }
+            checker();
+        });
+
     }
 }
+
+
