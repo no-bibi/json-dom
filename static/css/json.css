@@ -23,7 +23,8 @@ body{
     margin:12px 0 0 12px;
 }
 .json_html_content ul{
-    margin-left: 24px;
+    padding-left: 24px;
+    /*overflow: hidden;*/
 }
 .json_html_content ul li xmp{
     height: 18px;
