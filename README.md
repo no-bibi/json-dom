@@ -10,4 +10,4 @@ try `https://api.github.com/licenses` ,enjoy!
 
 ### Quick Look
 
-<p><img src="static/json-dom.jpg" style="max-width: 65%"></p><br>
+<p><img src="static/json-dom.jpg"></p><br>
